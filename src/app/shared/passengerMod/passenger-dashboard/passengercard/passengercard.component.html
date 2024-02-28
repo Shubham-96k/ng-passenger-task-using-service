@@ -1,0 +1,26 @@
+
+
+<mat-card class="mb-3 p-4">
+    <mat-card-header>
+        <mat-card-title>
+            <!-- <strong>{{passcard.fullname}}</strong> -->
+            <input type="text" #passengername required [value]="passcard.fullname" class="form-control"
+            [disabled]="!isEnabled">
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p><strong>Checked in : </strong>{{(passcard.checkInDate| date) ?? 'not checked in'}}</p>
+        <p><strong>children : </strong>{{passcard.children?.length ?? 0}}</p>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <div class="d-flex justify-content-between">
+        <button mat-raised-button color="primary" class="mr-3"
+        *ngIf="!isEnabled"
+        (click)="onEdit()">Edit</button>
+        <button mat-raised-button color="primary" class="mr-3"
+        *ngIf="isEnabled"
+        (click)="onUpdate(passengername)">Done</button>
+        <button mat-raised-button color="warn"
+        (click)="onRemove()">Delete</button>
+    </div>
+</mat-card>
